@@ -60,6 +60,10 @@ int* bubble_sort(int A[], int n) {
 
 Logically divide the array into two subarrays; a sorted subarray and an unsorted subarray. Add items to the sorted subarray by iteratively selecting the smallest item in the unsorted subarray and placing it at the end of the sorted subarray. When the unsorted subarray is empty, the result is a sorted array. This is an in-place algorithm; the sorted and unsorted subarrays make up the input array.
 
+![selection-sort.png](./vis/selection-sort.png)
+
+![selection-sort.gif](./vis/selection-sort.gif)
+
 #### Implementation:
 
 ```C
@@ -144,12 +148,6 @@ To partition the array, use two trackers `l` and `h`. `l` starts from the left a
 int* quick_sort(int A[], int n) {
     int partition(int A[], int l, int h) {
         int pivot = A[(l+h)/2]; /* take the middle element to be the pivot */
-        /* using two trackers l and h, move l from the left to the right until
-         * an element larger than the pivot is found, do the same for the h tracker
-         * starting from the right, moving left until a smaller element is found.
-         * once found, swap the two elements and update the trackers.
-         * once the two trackers cross, the pivot's final position should be at
-         * where the h pointer ends up */
         while(1) {
             while(A[l] < pivot) l++;
             while(A[h] > pivot) h--;

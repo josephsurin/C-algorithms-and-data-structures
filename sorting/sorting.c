@@ -103,12 +103,6 @@ int* merge_sort(int A[], int n) {
 int* quick_sort(int A[], int n) {
     int partition(int A[], int l, int h) {
         int pivot = A[(l+h)/2]; /* take the middle element to be the pivot */
-        /* using two trackers l and h, move l from the left to the right until
-         * an element larger than the pivot is found, do the same for the h tracker
-         * starting from the right, moving left until a smaller element is found.
-         * once found, swap the two elements and update the trackers.
-         * once the two trackers cross, the pivot's final position should be at
-         * where the h pointer ends up */
         while(1) {
             while(A[l] < pivot) l++;
             while(A[h] > pivot) h--;
