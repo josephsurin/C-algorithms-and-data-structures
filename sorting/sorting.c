@@ -114,7 +114,7 @@ int* quick_sort(int A[], int n) {
     int* qsort(int A[], int l, int h) {
         if(l < h) {
             int p = partition(A, l, h);
-            qsort(A, l, p-1); /* sort below the pivot */
+            qsort(A, l, p); /* sort below the pivot */
             qsort(A, p+1, h); /* sort above the pivot */
         }
         return A;
