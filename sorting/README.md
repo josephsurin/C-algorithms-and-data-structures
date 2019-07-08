@@ -146,6 +146,10 @@ int* merge_sort(int A[], int n) {
 Partition the array into subarrays by choosing an element to be the pivot and rearranging the elements so that all elements to the left of the pivot are less than or equal to the pivot, and all elements to the right are more than it. 
 To partition the array, use two trackers `l` and `h`. `l` starts from the left and moves right by one if `A[l]` is less than the pivot, while `h` starts from the right and moves left by one if `A[h]` is more than the pivot. When neither is true, we have found an element to the left of the pivot that is greater than the pivot, and an element to the right of the pivot that is smaller than the pivot, so we swap these two elements. Once `l` and `h` cross, all elements to the left of the pivot should be less than the pivot, and all elements to the right of the pivot should be greater than the pivot. The pivot's index will then be given by `h`.
 
+![quick-sort.png](./vis/quick-sort.png)
+
+![quick-sort.gif](./vis/quick-sort.gif)
+
 #### Implementation:
 
 ```C
