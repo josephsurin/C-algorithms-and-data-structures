@@ -88,6 +88,10 @@ int* selection_sort(int A[], int n) {
 
 Make use of a `merge` helper function which merges two sorted arrays in linear time. An array of size one is trivially sorted, so the input array of size `n` is partitioned into `n` arrays of size 1, each holding a single item. The partitions are then merged to form the sorted array.
 
+![merge-sort.png](./vis/merge-sort.png)
+
+![merge-sort.gif](./vis/merge-sort.gif)
+
 #### Implementation:
 
 ```C
