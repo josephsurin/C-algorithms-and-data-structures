@@ -99,9 +99,38 @@ void* merge_sort(void* A, int n, size_t size, int cmp(void*, void*)) {
                 memcpy(partitions_buffer+j*size, merged+k*size, size);
                 k++;
             }
+            free(merged);
         }
     }
     return partitions_buffer;
+}
+
+void* quick_sort(void* A, int n, size_t size, int cmp(void*, void*)) {
+    char* cA = A;
+    int partition(int l, int h) {
+        char* pivot = (char*)malloc(size);
+        assert(pivot != NULL);
+        memcpy(pivot, cA+((l+h)/2)*size, size); /* parentheses are important! */
+        while(1) {
+            while(cmp(cA+l*size, pivot) < 0) l++;
+            while(cmp(cA+h*size, pivot) > 0) h--;
+            if(l >= h) {
+                free(pivot);
+                return h;
+            }
+            swap(cA+l*size, cA+h*size, size);
+            l++; h--;
+        }
+    }
+    void* qsort(int l, int h) {
+        if(l < h) {
+            int p = partition(l, h);
+            qsort(l, p);
+            qsort(p+1, h);
+        }
+        return cA;
+    }
+    return qsort(0, n-1);
 }
 
 struct animal_s {
@@ -118,6 +147,7 @@ int main(void) {
     printf("[ * ] Bubble Sort: "); print_animals(bubble_sort(copy_array(animals, N, S), N, S, cmp_by_id), N);
     printf("[ * ] Selection Sort: "); print_animals(selection_sort(copy_array(animals, N, S), N, S, cmp_by_id), N);
     printf("[ * ] Merge Sort: "); print_animals(merge_sort(copy_array(animals, N, S), N, S, cmp_by_id), N);
+    printf("[ * ] Quick Sort: "); print_animals(quick_sort(copy_array(animals, N, S), N, S, cmp_by_id), N);
     return 0;
 }
 
