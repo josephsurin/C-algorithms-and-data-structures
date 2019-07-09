@@ -29,6 +29,32 @@ void* insertion_sort(void* A, int n, size_t size, int cmp(void*, void*)) {
     return A;
 }
 
+void* bubble_sort(void* A, int n, size_t size, int cmp(void*, void*)) {
+    char* cA = A;
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n-1-i; j++) {
+            if(cmp(cA+j*size, cA+(j+1)*size) > 0) {
+                swap(cA+j*size, cA+(j+1)*size, size);
+            }
+        }
+    }
+    return A;
+}
+
+void* selection_sort(void* A, int n, size_t size, int cmp(void*, void*)) {
+    char* cA = A;
+    for(int i = 0; i < n-1; i++) {
+        void* current_min = A+i*size;
+        for(int j = i+1; j < n; j++) {
+            if(cmp(A+j*size, current_min) < 0) {
+                current_min = A+j*size;
+            }
+        }
+        swap(current_min, A+i*size, size);
+    }
+    return A;
+}
+
 struct animal_s {
     int db_id;
     char name[30];
@@ -40,6 +66,8 @@ int main(void) {
     size_t S = sizeof(animal_t);
     printf("[ - ] Input Array: "); print_animals(animals, N);
     printf("[ * ] Insertion Sort: "); print_animals(insertion_sort(copy_array(animals, N, S), N, S, cmp_by_id), N);
+    printf("[ * ] Bubble Sort: "); print_animals(bubble_sort(copy_array(animals, N, S), N, S, cmp_by_id), N);
+    printf("[ * ] Selection Sort: "); print_animals(selection_sort(copy_array(animals, N, S), N, S, cmp_by_id), N);
     return 0;
 }
 
