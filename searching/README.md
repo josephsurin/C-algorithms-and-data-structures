@@ -1,6 +1,7 @@
 # Searching Algorithms
 
 - [Linear Search](#linear-search)
+- [Binary Search](#binary-search)
 
 ## Linear Search <a name="linear-search"></a>
 
