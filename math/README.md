@@ -1,6 +1,7 @@
 # Sorting Algorithms
 
 - [Euclidean Algorithm](#euclidean-algorithm)
+- [Extended Euclidean Algorithm](#extended-euclidean-algorithm)
 - [Exponentiation](#exponentiation)
 - [Modular Exponentiation](#modular-exponentiation)
 
@@ -17,6 +18,35 @@ int gcd(int a, int b) {
         b = a % b;
         a = t;
     }
+    return a;
+}
+```
+
+## Extended Euclidean Algorithm <a name="extended-euclidean-algorithm"></a>
+
+Calculates the gcd and the (minimal) [Bézout coefficients](https://en.wikipedia.org/wiki/B%C3%A9zout%27s_identity) of two numbers. The procedure for the extended euclidean algorithm resembles that of the euclidean algorithm, except that two extra sequences are produced. If the sequence `q(n)` represents the quotients at each step, then `r(n+1) = r(n-1) - q(n)r(n)` with `r(0) = a` and `r(1) = b`. The two additional sequences `s(n)` and `t(n)` determine the Bézout coefficients. Namely, when `r(k) == 0`, the gcd is given by `r(k-1)`, and the Bézout coefficients are given by `s(k-1)` and `t(k-1)`. `s(n)` and `t(n)` are recursively defined as follows: `s(n+1) = s(n-1) - q(n)s(n), s(0) = 1, s(1) = 0`, `t(n+1) = t(n-1) - q(n)t(n), t(0) = 0, t(1) = 1`.
+
+#### Implementation:
+
+```C
+int xgcd(int a, int b, int* s, int* t) {
+    int s0 = 1, s1 = 0;
+    int t0 = 0, t1 = 1;
+    int r, q, temp;
+    while(b != 0) {
+        r = a % b;
+        q = a / b;
+        temp = s1;
+        s1 = s0 - q*s1;
+        s0 = temp;
+        temp = t1;
+        t1 = t0 - q*t1;
+        t0 = temp;
+        a = b;
+        b = r;
+    }
+    *s = s0;
+    *t = t0;
     return a;
 }
 ```

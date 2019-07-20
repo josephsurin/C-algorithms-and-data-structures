@@ -15,5 +15,6 @@ For educational purposes only...
 - [Stack](./stack)
 - [Math](./math)
     - [Euclidean Algorithm](./math#euclidean-algorithm)
+    - [Extended Euclidean Algorithm](./math#extended-euclidean-algorithm)
     - [Exponentiation](./math#exponentiation)
     - [Modular Exponentiation](./math#modular_exponentation)
