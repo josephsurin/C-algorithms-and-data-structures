@@ -2,7 +2,7 @@
 
 A linked list is a data structure composed of a collection of nodes that form a sequence. Each node is a structure containing two fields: `data` and `next`. The `data` field holds the data being stored, and the `next` field is a pointer to the next node in the sequence. Basic operations include: `add`, `prepend`, `get_head`, `get_tail`, `remove`, `remove_head`, `remove_tail`, `find`, `traverse`. Operations such as `remove` and `find` have worst case time complexity of `O(n)` as all nodes may need to be iterated over. Unless a `tail` node is kept track of, this is also the case for `add` and `get_tail`.
 
-A linked list can be implemented as a structure containing `head`, `tail`, `len` (and `el_size`) fields.
+A linked list can be implemented as a structure containing `head`, `tail`, (and `el_size`) fields.
 
 #### `add`
 
