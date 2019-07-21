@@ -13,6 +13,7 @@ For educational purposes only...
     - [Binary Search](./searching#binary-search)
 - [Queue](./queue)
 - [Stack](./stack)
+- [Linked List](./linked_list)
 - [Math](./math)
     - [Euclidean Algorithm](./math#euclidean-algorithm)
     - [Extended Euclidean Algorithm](./math#extended-euclidean-algorithm)
