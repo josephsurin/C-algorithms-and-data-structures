@@ -11,13 +11,11 @@ typedef struct Node_s Node;
 
 typedef struct {
     Node *head, *tail;
-    size_t el_size;
 } LinkedList;
 
-LinkedList* create_linkedlist(size_t el_size) {
+LinkedList* create_linkedlist() {
     LinkedList* l = (LinkedList*) malloc(sizeof(LinkedList));
     l->head = l->tail = NULL;
-    l->el_size = el_size;
     return l;
 }
 
@@ -140,7 +138,7 @@ void print_char(void* d) {
 }
 
 int main(void) {
-    LinkedList* l = create_linkedlist(sizeof(char));
+    LinkedList* l = create_linkedlist();
     char A = 'A', B = 'B', C = 'C', D = 'D', E = 'E';
     add(l, &A);
     add(l, &B);
