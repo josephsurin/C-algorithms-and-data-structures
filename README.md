@@ -15,6 +15,7 @@ For educational purposes only...
 - [Stack](./stack)
 - [Linked List](./linked_list)
 - [Hash Table](./hash_table)
+- [Heap](./heap)
 - [Math](./math)
     - [Euclidean Algorithm](./math#euclidean-algorithm)
     - [Extended Euclidean Algorithm](./math#extended-euclidean-algorithm)
