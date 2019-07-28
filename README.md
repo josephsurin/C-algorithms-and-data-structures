@@ -14,6 +14,7 @@ For educational purposes only...
 - [Queue](./queue)
 - [Stack](./stack)
 - [Linked List](./linked_list)
+- [Doubly Linked List](./doubly_linked_list)
 - [Hash Table](./hash_table)
 - [Heap](./heap)
 - [Math](./math)
