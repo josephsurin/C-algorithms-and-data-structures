@@ -17,6 +17,7 @@ For educational purposes only...
 - [Doubly Linked List](./doubly_linked_list)
 - [Hash Table](./hash_table)
 - [Heap](./heap)
+- [Binary Search Tree](./binary_search_tree)
 - [Math](./math)
     - [Euclidean Algorithm](./math#euclidean-algorithm)
     - [Extended Euclidean Algorithm](./math#extended-euclidean-algorithm)
