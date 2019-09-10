@@ -23,3 +23,6 @@ For educational purposes only...
     - [Extended Euclidean Algorithm](./math#extended-euclidean-algorithm)
     - [Exponentiation](./math#exponentiation)
     - [Modular Exponentiation](./math#modular_exponentation)
+- [Pattern Searching](./pattern_searching)
+    - [Naive Pattern Search](./pattern_searching/naive)
+    - [KMP Pattern Search](./pattern_searching/KMP)
