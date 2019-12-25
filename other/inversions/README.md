@@ -15,3 +15,51 @@ We make use of a helper "merge" function which returns the count of inversions w
 The main function will involve recursive calls to itself and a call to the merge function as per usual merge sort. The function takes the array input `A` and two integers `l` and `h` which represent the region of the array for which to count inversions for. If `l < h`, we let `m = floor[(l+h)/2]` and initialise a counter variable `c = 0`. We then recursively call ourselves with arguments `(A, l, m)` and `(A, m, h)`. We then merge the results with arguments `(A, l, m, h)`. Summing the return values of these three function calls in the variable `c` and then finally returning `c` gives the total number of inversions in the array.
 
 #### Implementation:
+
+```C
+#include <stdlib.h>
+
+int merge_count(int A[], int l, int m, int h) {
+    int* L = (int*)calloc(m-l, sizeof(int));
+    int* U = (int*)calloc(h-m, sizeof(int));
+    int i = l, ii = 0;
+    while(i < m) {
+        L[ii++] = A[i++];
+    }
+    ii = 0;
+    while(i < h) {
+        U[ii++] = A[i++];
+    }
+    int ll = l;
+    int j = 0, k = 0, c = 0;
+    while(j < m-ll && k < h-m) {
+        if(L[j] < U[k]) {
+            A[l++] = L[j++];
+        } else {
+            c += m - ll - j;
+            A[l++] = U[k++];
+        }
+    }
+    if(j == m-ll) { /* L is empty */
+        while(l < h && k < h-m) {
+            A[l++] = U[k++];
+        }
+    } else { /* U is empty */
+        while(l < h && j < m-ll) {
+            A[l++] = L[j++];
+        }
+    }
+    return c;
+}
+
+int count_inversions(int A[], int l, int h) {
+    int c = 0;
+    if(l+1 < h) {
+        int m = (l+h)/2;
+        c += count_inversions(A, l, m);
+        c += count_inversions(A, m, h);
+        c += merge_count(A, l, m, h);
+    }
+    return c;
+}
+```
