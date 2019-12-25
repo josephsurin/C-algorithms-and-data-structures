@@ -26,3 +26,6 @@ For educational purposes only...
 - [Pattern Searching](./pattern_searching)
     - [Naive Pattern Search](./pattern_searching/naive)
     - [KMP Pattern Search](./pattern_searching/KMP)
+- [Other](./other)
+    - [Inversions](./other/inversions)
+        - [Counting Inversions](./other/inversions#counting-inversions)
