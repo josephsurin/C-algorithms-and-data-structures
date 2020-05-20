@@ -56,48 +56,49 @@ int* selection_sort(int A[], int n) {
 }
 
 int* merge_sort(int A[], int n) {
-    int* merge(int A1[], int A2[], int n1, int n2) {
-        int* merged_arr = (int*)malloc(sizeof(int)*(n1+n2));
-        int i = 0;
+    void merge(int A[], int l, int m, int r) {
+        int i;
+        int n1 = m - l + 1;
+        int n2 = r - m;
+        int* L = malloc(sizeof(int)*n1);
+        int* R = malloc(sizeof(int)*n2);
+        for(i = 0; i < n1; i++) L[i] = A[l+i];
+        for(i = 0; i < n2; i++) R[i] = A[m+i+1];
+
+        i = l;
+
         while(n1 && n2) {
-            if(A1[0] <= A2[0]) {
-                merged_arr[i] = A1[0];
-                A1++; n1--;
+            if(L[0] <= R[0]) {
+                A[i] = L[0];
+                L++; n1--;
             } else {
-                merged_arr[i] = A2[0];
-                A2++; n2--;
+                A[i] = R[0];
+                R++; n2--;
             }
             i++;
         }
         if(n1) { /* n1 still has items */
             while(n1) {
-                merged_arr[i] = A1[0];
-                A1++; i++; n1--;
+                A[i] = L[0];
+                L++; i++; n1--;
             }
         } else if(n2) { /* n1 still has items */
             while(n2) {
-                merged_arr[i] = A2[0];
-                A2++; i++; n2--;
-            }
-        }
-        return merged_arr;
-    }
-    int* partitions_buffer = (int*)calloc(n, sizeof(int)); /* auxiliary storage for sorted partitions */
-    for(int i = 0; i < n; i++) partitions_buffer[i] = A[i]; /* initialise array of single item sorted partitions */
-    for(int partition_size = 1; partition_size < n; partition_size *= 2) {
-        for(int i = 0; i < n; i+=2*partition_size) {
-            if(i+partition_size >= n) break; /* odd number of partitions */
-            int partition_size2 = MIN(n-i-partition_size, partition_size); /* for when there were previously odd partitions */
-            int* merged = merge(&partitions_buffer[i], &partitions_buffer[i+partition_size], partition_size, partition_size2);
-            /* update the partition buffer with the merged array */
-            int k = 0;
-            for(int j = i; j < i+2*partition_size; j++) {
-                partitions_buffer[j] = merged[k];
-                k++;
+                A[i] = R[0];
+                R++; i++; n2--;
             }
         }
     }
-    return partitions_buffer;
+    void mergesort_helper(int A[], int l, int r) {
+        if(l < r) {
+            int m = (l+r)/2;
+            mergesort_helper(A, l, m);
+            mergesort_helper(A, m+1, r);
+            merge(A, l, m, r);
+        }
+    }
+    mergesort_helper(A, 0, n);
+    return A;
 }
 
 int* quick_sort(int A[], int n) {

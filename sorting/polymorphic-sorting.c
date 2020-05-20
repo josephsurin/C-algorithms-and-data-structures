@@ -58,51 +58,46 @@ void* selection_sort(void* A, int n, size_t size, int cmp(void*, void*)) {
 }
 
 void* merge_sort(void* A, int n, size_t size, int cmp(void*, void*)) {
-    char* merge(void* A1, void* A2, int n1, int n2) {
-        char* merged_arr = (char*)malloc((n1+n2)*size);
-        char *cA1 = A1, *cA2 = A2;
-        assert(merged_arr != NULL);
-        int i = 0;
+    void merge(void* A, int l, int m, int r) {
+        int n1 = m - l + 1;
+        int n2 = r - m;
+        char* L = (char*)malloc(n1*size);
+        char* R = (char*)malloc(n2*size);
+        memcpy(L, A+l*size, size*n1);
+        memcpy(R, A+(m+1)*size, size*n2);
+        int i = l;
         while(n1 && n2) {
-            if(cmp(cA1, cA2) <= 0) {
-                memcpy(merged_arr+i*size, cA1, size);
-                cA1 += size; n1--;
+            if(cmp(L, R) <= 0) {
+                memcpy(A+i*size, L, size);
+                L += size; n1--;
             } else {
-                memcpy(merged_arr+i*size, cA2, size);
-                cA2 += size; n2--;
+                memcpy(A+i*size, R, size);
+                R += size; n2--;
             }
             i++;
         }
         if(n1) {
             while(n1) {
-                memcpy(merged_arr+i*size, cA1, size);
-                cA1 += size; i++; n1--;
+                memcpy(A+i*size, L, size);
+                L += size; i++; n1--;
             }
         } else if(n2) {
             while(n2) {
-                memcpy(merged_arr+i*size, cA2, size);
-                cA2 += size; i++; n2--;
+                memcpy(A+i*size, R, size);
+                R += size; i++; n2--;
             }
         }
-        return merged_arr;
     }
-    char* cA = A;
-    char* partitions_buffer = (char*)calloc(n, size);
-    for(int i = 0; i < n; i++) memcpy(partitions_buffer+i*size, cA+i*size, size);
-    for(int partition_size = 1; partition_size < n; partition_size *= 2) {
-        for(int i = 0; i < n; i += 2*partition_size) {
-            if(i+partition_size >= n) break;
-            int partition_size2 = MIN(n-i-partition_size, partition_size);
-            char* merged = merge(partitions_buffer+i*size, partitions_buffer+(i+partition_size)*size, partition_size, partition_size2);
-            int k = 0;
-            for(int j = i; j < i+2*partition_size; j++) {
-                memcpy(partitions_buffer+j*size, merged+k*size, size);
-                k++;
-            }
-            free(merged);
+    void mergesort_helper(char* A, int l, int r) {
+        if(l < r) {
+            int m = (l+r)/2;
+            mergesort_helper(A, l, m);
+            mergesort_helper(A, m + 1, r);
+            merge(A, l, m, r);
         }
     }
-    return partitions_buffer;
+    mergesort_helper(A, 0, n);
+    return A;
 }
 
 void* quick_sort(void* A, int n, size_t size, int cmp(void*, void*)) {
