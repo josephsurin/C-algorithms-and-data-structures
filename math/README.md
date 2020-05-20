@@ -1,4 +1,4 @@
-# Sorting Algorithms
+# Math Algorithms
 
 - [Euclidean Algorithm](#euclidean-algorithm)
 - [Extended Euclidean Algorithm](#extended-euclidean-algorithm)
