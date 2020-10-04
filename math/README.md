@@ -1,6 +1,7 @@
 # Math Algorithms
 
 - [Euclidean Algorithm](#euclidean-algorithm)
+- [Least Common Multiple](#least-common-multiple)
 - [Extended Euclidean Algorithm](#extended-euclidean-algorithm)
 - [Exponentiation](#exponentiation)
 - [Modular Exponentiation](#modular-exponentiation)
@@ -19,6 +20,18 @@ int gcd(int a, int b) {
         a = t;
     }
     return a;
+}
+```
+
+## Least Common Multiple <a name="least-common-multiple"></a>
+
+Calculates the [lcm](https://en.wikipedia.org/wiki/Least_common_multiple) of two numbers, using the fact that `lcm(a, b) = |ab|/gcd(a, b)`.
+
+#### Implementation
+
+```C
+int lcm(int a, int b) {
+    return abs(a*b)/gcd(a, b);
 }
 ```
 

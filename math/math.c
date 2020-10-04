@@ -9,6 +9,10 @@ int gcd(int a, int b) {
     return a;
 }
 
+int lcm(int a, int b) {
+    return abs(a*b)/gcd(a, b);
+}
+
 int xgcd(int a, int b, int* s, int* t) {
     int s0 = 1, s1 = 0;
     int t0 = 0, t1 = 1;
@@ -60,6 +64,7 @@ int pow_mod(int b, int e, int n) {
 int main(void) {
     int a = 1071, b = 462;
     printf("gcd(%d, %d) = %d\n", a, b, gcd(a, b));
+    printf("lcm(%d, %d) = %d\n", a, b, lcm(a, b));
     int x, y;
     int g = xgcd(a, b, &x, &y);
     printf("xgcd: %d*%d + %d*%d = %d\n", x, a, y, b, g);
