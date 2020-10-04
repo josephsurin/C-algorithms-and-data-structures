@@ -20,6 +20,7 @@ For educational purposes only...
 - [Binary Search Tree](./binary_search_tree)
 - [Math](./math)
     - [Euclidean Algorithm](./math#euclidean-algorithm)
+    - [Least Common Multiple](./math#least-common-multiple)
     - [Extended Euclidean Algorithm](./math#extended-euclidean-algorithm)
     - [Exponentiation](./math#exponentiation)
     - [Modular Exponentiation](./math#modular_exponentation)
